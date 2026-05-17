@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>
+Політика конфіденційності
+</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+body{
+background:#070707;
+color:#fff;
+font-family:'Montserrat',sans-serif;
+padding:30px 20px;
+line-height:1.8;
+max-width:800px;
+margin:0 auto;
+}
+
+h1{
+font-size:32px;
+margin-bottom:24px;
+}
+
+h2{
+font-size:22px;
+margin-top:30px;
+margin-bottom:14px;
+color:#ff5fa4;
+}
+
+p{
+color:#d0d0d0;
+margin-bottom:14px;
+}
+
+a{
+color:#ff5fa4;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>
+Політика конфіденційності
+</h1>
+
+<p>
+Ми поважаємо вашу конфіденційність та захищаємо ваші персональні дані.
+</p>
+
+<h2>
+Які дані ми збираємо
+</h2>
+
+<p>
+Під час заповнення форми на сайті можуть збиратися:
+</p>
+
+<p>
+— ім’я<br>
+— номер телефону або Telegram<br>
+— Instagram<br>
+— текст повідомлення
+</p>
+
+<h2>
+Для чого використовуються дані
+</h2>
+
+<p>
+Дані використовуються виключно для зв’язку з вами щодо консультації та надання інформації про послуги.
+</p>
+
+<h2>
+Передача даних
+</h2>
+
+<p>
+Ваші дані не передаються третім особам, окрім сервісів, необхідних для обробки заявки:
+Google Sheets, Telegram та Meta Pixel.
+</p>
+
+<h2>
+Cookies та аналітика
+</h2>
+
+<p>
+Сайт може використовувати cookies та Meta Pixel для аналітики та покращення рекламних кампаній.
+</p>
+
+<h2>
+Контакти
+</h2>
+
+<p>
+Instagram:
+<a href="https://www.instagram.com/a_valinytskyi/" target="_blank">
+@a_valinytskyi
+</a>
+</p>
+
+</body>
+</html>
