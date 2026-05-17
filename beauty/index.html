@@ -420,6 +420,29 @@ color:#9f9f9f;
 line-height:1.6;
 }
 
+.checkbox-wrap{
+display:flex;
+align-items:flex-start;
+gap:10px;
+margin-bottom:20px;
+font-size:13px;
+line-height:1.5;
+color:#cfcfcf;
+}
+
+.checkbox-wrap input{
+width:18px;
+height:18px;
+margin-top:2px;
+accent-color:#ff2e88;
+}
+
+.checkbox-wrap a{
+color:#ff5fa4;
+text-decoration:none;
+font-weight:700;
+}
+  
 @keyframes floatCard {
 
 0%{
@@ -726,7 +749,19 @@ class="insta-link"
 >
 Або напишіть мені в Instagram → @a_valinytskyi
 </a>
+<label class="checkbox-wrap">
 
+<input type="checkbox" required>
+
+<span>
+Я погоджуюсь з
+<a href="privacy.html" target="_blank">
+політикою конфіденційності
+</a>
+</span>
+
+</label>
+  
 <button class="btn" type="submit">
 ЗАПИСАТИСЬ НА КОНСУЛЬТАЦІЮ
 </button>
