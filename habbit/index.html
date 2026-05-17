@@ -24,7 +24,6 @@
     --accent:#5d7cff;
     --green:#24d48b;
     --red:#ff5b73;
-    --yellow:#ffcc66;
     --text:#f3f6ff;
     --muted:#95a2c2;
 }
@@ -36,7 +35,6 @@
 }
 
 html{
-    height:100%;
     -webkit-text-size-adjust:100%;
 }
 
@@ -50,14 +48,8 @@ body{
     padding-bottom:120px;
 }
 
-@supports(padding:max(0px)){
-    body{
-        padding-bottom:max(120px, env(safe-area-inset-bottom));
-    }
-}
-
 .wrapper{
-    max-width:1600px;
+    max-width:1700px;
     margin:auto;
     padding:20px;
 }
@@ -82,16 +74,15 @@ body{
 
 .grid{
     display:grid;
-    grid-template-columns:340px 1fr 360px;
+    grid-template-columns:330px 1fr 360px;
     gap:20px;
 }
 
 .card{
-    background:rgba(20,27,45,.95);
+    background:rgba(20,27,45,.96);
     border:1px solid var(--border);
     border-radius:24px;
     padding:20px;
-    backdrop-filter:blur(12px);
 }
 
 .section-title{
@@ -102,8 +93,7 @@ body{
 
 input,
 select,
-button,
-textarea{
+button{
     width:100%;
     border:none;
     outline:none;
@@ -119,15 +109,34 @@ button{
     background:var(--accent);
     font-weight:700;
     cursor:pointer;
-    transition:.2s;
-}
-
-button:hover{
-    transform:translateY(-2px);
 }
 
 .secondary{
-    background:#202c47;
+    background:#22304f;
+}
+
+.stats{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:14px;
+}
+
+.stat{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:20px;
+    padding:18px;
+}
+
+.stat-title{
+    color:var(--muted);
+    font-size:13px;
+}
+
+.stat-value{
+    margin-top:10px;
+    font-size:30px;
+    font-weight:800;
 }
 
 .task{
@@ -138,12 +147,7 @@ button:hover{
     display:flex;
     justify-content:space-between;
     align-items:flex-start;
-    gap:14px;
-    border:1px solid transparent;
-}
-
-.task:hover{
-    border-color:var(--accent);
+    gap:12px;
 }
 
 .task.done{
@@ -165,40 +169,33 @@ button:hover{
 
 .badges{
     display:flex;
-    flex-wrap:wrap;
     gap:8px;
-    margin-top:12px;
+    flex-wrap:wrap;
+    margin-top:10px;
 }
 
 .badge{
     padding:6px 12px;
     border-radius:100px;
     font-size:12px;
-    font-weight:600;
+    font-weight:700;
 }
 
 .goal-badge{
-    background:#24385e;
-    color:#bdd0ff;
+    background:#243b63;
+    color:#bfd0ff;
 }
 
 .habit-badge{
-    background:#214333;
-    color:#a3ffc8;
+    background:#1f4735;
+    color:#a4ffca;
 }
 
-.progress{
-    width:100%;
-    height:10px;
-    border-radius:20px;
-    overflow:hidden;
-    background:#0d1424;
-    margin-top:14px;
-}
-
-.progress-bar{
-    height:100%;
-    background:linear-gradient(90deg,#5d7cff,#7ea0ff);
+.plan-task{
+    background:var(--card2);
+    border-radius:16px;
+    padding:14px;
+    margin-top:12px;
 }
 
 .goal{
@@ -208,33 +205,30 @@ button:hover{
     margin-top:14px;
 }
 
-.goal-top{
+.progress{
+    width:100%;
+    height:10px;
+    border-radius:20px;
+    background:#0f1628;
+    overflow:hidden;
+    margin-top:12px;
+}
+
+.progress-bar{
+    height:100%;
+    background:linear-gradient(90deg,#5d7cff,#8ba7ff);
+}
+
+.tabs{
     display:flex;
-    justify-content:space-between;
-    align-items:center;
+    gap:10px;
+    flex-wrap:wrap;
+    margin-bottom:18px;
 }
 
-.stats{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:14px;
-}
-
-.stat{
-    background:var(--card2);
-    border-radius:18px;
-    padding:18px;
-}
-
-.stat-label{
-    color:var(--muted);
-    font-size:13px;
-}
-
-.stat-value{
-    font-size:30px;
-    font-weight:800;
-    margin-top:10px;
+.empty{
+    opacity:.5;
+    padding:20px 0;
 }
 
 .money-positive{
@@ -245,75 +239,30 @@ button:hover{
     color:var(--red);
 }
 
-.history-item{
-    background:var(--card2);
-    padding:12px;
-    border-radius:14px;
-    margin-top:10px;
-}
-
-.empty{
-    opacity:.5;
-    padding:20px 0;
-}
-
-.tabs{
-    display:flex;
-    gap:10px;
-    margin-bottom:18px;
-    flex-wrap:wrap;
-}
-
-.tabs button{
-    margin-top:0;
-}
-
-textarea{
-    resize:none;
-    min-height:120px;
-}
-
-.mobile-nav{
-    display:none;
-}
-
-@media(max-width:1200px){
+@media(max-width:1300px){
 
     .grid{
         grid-template-columns:1fr;
-    }
-
-}
-
-@media(max-width:768px){
-
-    body{
-        padding:16px;
-    }
-
-    .wrapper{
-        padding:0;
-    }
-
-    .topbar{
-        position:sticky;
-        top:0;
-        z-index:50;
-        padding-top:10px;
-        backdrop-filter:blur(20px);
-    }
-
-    .logo{
-        font-size:28px;
     }
 
     .stats{
         grid-template-columns:1fr 1fr;
     }
 
-    .card{
-        border-radius:22px;
-        padding:18px;
+}
+
+@media(max-width:768px){
+
+    .wrapper{
+        padding:14px;
+    }
+
+    .stats{
+        grid-template-columns:1fr;
+    }
+
+    .logo{
+        font-size:28px;
     }
 
     input,
@@ -335,11 +284,13 @@ textarea{
     <div class="topbar">
 
         <div>
+
             <div class="logo">
                 Focus<span>OS</span>
             </div>
 
-            <div id="todayDate"></div>
+            <div id="todayText"></div>
+
         </div>
 
         <div style="width:240px;">
@@ -351,7 +302,7 @@ textarea{
     <div class="stats">
 
         <div class="stat">
-            <div class="stat-label">
+            <div class="stat-title">
                 Выполнено сегодня
             </div>
 
@@ -361,7 +312,7 @@ textarea{
         </div>
 
         <div class="stat">
-            <div class="stat-label">
+            <div class="stat-title">
                 Эффективность
             </div>
 
@@ -371,7 +322,7 @@ textarea{
         </div>
 
         <div class="stat">
-            <div class="stat-label">
+            <div class="stat-title">
                 Серия привычек
             </div>
 
@@ -381,7 +332,7 @@ textarea{
         </div>
 
         <div class="stat">
-            <div class="stat-label">
+            <div class="stat-title">
                 Баланс наград
             </div>
 
@@ -400,10 +351,10 @@ textarea{
             <div class="card">
 
                 <div class="section-title">
-                    🎯 Новая цель
+                    🎯 Создать цель
                 </div>
 
-                <input id="goalInput" placeholder="Например: Запустить агентство">
+                <input id="goalInput" placeholder="Например: Масштабировать агентство">
 
                 <button onclick="addGoal()">
                     Создать цель
@@ -414,7 +365,7 @@ textarea{
             <div class="card" style="margin-top:20px;">
 
                 <div class="section-title">
-                    📝 Новая задача
+                    ➕ Добавить задачу
                 </div>
 
                 <input id="taskInput" placeholder="Название задачи">
@@ -424,12 +375,19 @@ textarea{
                 <input type="date" id="taskDate">
 
                 <select id="taskType">
-                    <option value="task">Обычная задача</option>
-                    <option value="habit">Привычка</option>
+
+                    <option value="task">
+                        Обычная задача
+                    </option>
+
+                    <option value="habit">
+                        Привычка (ежедневно)
+                    </option>
+
                 </select>
 
                 <button onclick="addTask()">
-                    Добавить задачу
+                    Добавить
                 </button>
 
             </div>
@@ -437,7 +395,7 @@ textarea{
             <div class="card" style="margin-top:20px;">
 
                 <div class="section-title">
-                    💰 Система наград
+                    💰 Награды
                 </div>
 
                 <div style="margin-bottom:10px;">
@@ -488,20 +446,20 @@ textarea{
             <div class="card" style="margin-top:20px;">
 
                 <div class="section-title">
-                    📆 План на неделю
+                    📆 Планировщик
                 </div>
 
-                <textarea id="weekPlan" placeholder="План на неделю..."></textarea>
+                <input id="plannerTask" placeholder="Например: Сделать сайт">
 
-            </div>
+                <select id="plannerGoal"></select>
 
-            <div class="card" style="margin-top:20px;">
+                <input type="date" id="plannerDate">
 
-                <div class="section-title">
-                    🗓 План на месяц
-                </div>
+                <button onclick="addPlannedTask()">
+                    Запланировать
+                </button>
 
-                <textarea id="monthPlan" placeholder="План на месяц..."></textarea>
+                <div id="plannedTasks"></div>
 
             </div>
 
@@ -549,17 +507,12 @@ let filterMode = 'all';
 const today =
 new Date().toISOString().split('T')[0];
 
-document.getElementById('todayDate')
+document.getElementById('todayText')
 .innerText = "Сегодня: " + today;
 
 document.getElementById('viewDate').value = today;
 document.getElementById('taskDate').value = today;
-
-document.getElementById('weekPlan').value =
-localStorage.getItem('weekPlan') || '';
-
-document.getElementById('monthPlan').value =
-localStorage.getItem('monthPlan') || '';
+document.getElementById('plannerDate').value = today;
 
 function save(){
 
@@ -573,15 +526,6 @@ function save(){
         JSON.stringify(tasks)
     );
 
-    localStorage.setItem(
-        'weekPlan',
-        document.getElementById('weekPlan').value
-    );
-
-    localStorage.setItem(
-        'monthPlan',
-        document.getElementById('monthPlan').value
-    );
 }
 
 function addGoal(){
@@ -600,26 +544,33 @@ function addGoal(){
 
     save();
 
-    renderGoals();
     renderGoalOptions();
+    renderGoals();
 }
 
 function renderGoalOptions(){
 
-    const select =
-    document.getElementById('goalSelect');
+    const selects = [
+        document.getElementById('goalSelect'),
+        document.getElementById('plannerGoal')
+    ];
 
-    select.innerHTML =
-    `<option value="">Без цели</option>`;
+    selects.forEach(select => {
 
-    goals.forEach(goal => {
+        select.innerHTML =
+        `<option value="">Без цели</option>`;
 
-        select.innerHTML += `
-            <option value="${goal.id}">
-                ${goal.name}
-            </option>
-        `;
+        goals.forEach(goal => {
+
+            select.innerHTML += `
+                <option value="${goal.id}">
+                    ${goal.name}
+                </option>
+            `;
+        });
+
     });
+
 }
 
 function addTask(){
@@ -648,13 +599,17 @@ function addTask(){
 
         type:taskType.value,
 
+        recurring:
+        taskType.value === 'habit',
+
         createdAt:new Date().toISOString(),
 
-        scheduledDates:[taskDate.value],
+        scheduledDates:
+        taskType.value === 'habit'
+        ? []
+        : [taskDate.value],
 
         completedDates:[],
-
-        skippedDates:[],
 
         streak:0
 
@@ -667,11 +622,56 @@ function addTask(){
     renderAll();
 }
 
-function setFilter(mode){
+function addPlannedTask(){
 
-    filterMode = mode;
+    const text =
+    document.getElementById('plannerTask');
 
-    renderTasks();
+    const goal =
+    document.getElementById('plannerGoal');
+
+    const date =
+    document.getElementById('plannerDate');
+
+    if(!text.value.trim()) return;
+
+    tasks.push({
+
+        id:Date.now(),
+
+        text:text.value,
+
+        goalId:goal.value,
+
+        type:'task',
+
+        recurring:false,
+
+        createdAt:new Date().toISOString(),
+
+        scheduledDates:[date.value],
+
+        completedDates:[],
+
+        streak:0
+
+    });
+
+    text.value='';
+
+    save();
+
+    renderAll();
+}
+
+function shouldShowTask(task,date){
+
+    if(task.recurring){
+        return true;
+    }
+
+    return task.scheduledDates.includes(date);
+
 }
 
 function toggleTask(id){
@@ -683,10 +683,10 @@ function toggleTask(id){
 
         if(task.id === id){
 
-            const alreadyDone =
+            const done =
             task.completedDates.includes(date);
 
-            if(alreadyDone){
+            if(done){
 
                 task.completedDates =
                 task.completedDates.filter(
@@ -722,13 +722,21 @@ function toggleTask(id){
     renderAll();
 }
 
+function setFilter(mode){
+
+    filterMode = mode;
+
+    renderTasks();
+}
+
 function renderTasks(){
 
     const date =
     document.getElementById('viewDate').value;
 
-    let filtered = tasks.filter(task =>
-        task.scheduledDates.includes(date)
+    let filtered =
+    tasks.filter(task =>
+        shouldShowTask(task,date)
     );
 
     if(filterMode !== 'all'){
@@ -754,17 +762,17 @@ function renderTasks(){
         return;
     }
 
-    container.innerHTML = '';
+    container.innerHTML='';
 
     filtered.forEach(task => {
+
+        const done =
+        task.completedDates.includes(date);
 
         const goal =
         goals.find(
             g => g.id == task.goalId
         );
-
-        const done =
-        task.completedDates.includes(date);
 
         container.innerHTML += `
 
@@ -792,8 +800,17 @@ function renderTasks(){
                             task.type === 'habit'
                             ? `
                                 <div class="badge habit-badge">
-                                    🔥 Серия:
-                                    ${task.streak}
+                                    🔁 Ежедневная привычка
+                                </div>
+                            `
+                            : ''
+                        }
+
+                        ${
+                            task.type === 'habit'
+                            ? `
+                                <div class="badge habit-badge">
+                                    🔥 ${task.streak}
                                 </div>
                             `
                             : ''
@@ -817,6 +834,7 @@ function renderTasks(){
 
         `;
     });
+
 }
 
 function renderGoals(){
@@ -853,25 +871,26 @@ function renderGoals(){
 
         });
 
-        let total = 0;
-
-        related.forEach(task => {
-
-            total +=
-            task.scheduledDates.length;
-
-        });
+        const total =
+        related.length || 1;
 
         const percent =
-        total
-        ? Math.round((completed / total) * 100)
-        : 0;
+        Math.min(
+            100,
+            Math.round(
+                (completed / total) * 100
+            )
+        );
 
         container.innerHTML += `
 
             <div class="goal">
 
-                <div class="goal-top">
+                <div style="
+                    display:flex;
+                    justify-content:space-between;
+                    align-items:center;
+                ">
 
                     <div>
                         ${goal.name}
@@ -892,10 +911,13 @@ function renderGoals(){
 
                 </div>
 
-                <div style="margin-top:10px; color:var(--muted);">
+                <div style="
+                    margin-top:10px;
+                    color:var(--muted);
+                ">
 
-                    ${completed} / ${total}
-                    выполнено
+                    Выполнений:
+                    ${completed}
 
                 </div>
 
@@ -903,6 +925,87 @@ function renderGoals(){
 
         `;
     });
+
+}
+
+function renderPlannedTasks(){
+
+    const container =
+    document.getElementById('plannedTasks');
+
+    const planned =
+    tasks.filter(
+        t => !t.recurring
+    );
+
+    if(planned.length === 0){
+
+        container.innerHTML = `
+            <div class="empty">
+                Нет запланированных задач
+            </div>
+        `;
+
+        return;
+    }
+
+    container.innerHTML='';
+
+    planned.sort((a,b)=>
+        a.scheduledDates[0]
+        >
+        b.scheduledDates[0]
+        ? 1 : -1
+    );
+
+    planned.forEach(task => {
+
+        const goal =
+        goals.find(
+            g => g.id == task.goalId
+        );
+
+        container.innerHTML += `
+
+            <div class="plan-task">
+
+                <div style="
+                    font-weight:700;
+                ">
+                    ${task.text}
+                </div>
+
+                <div style="
+                    margin-top:8px;
+                    color:var(--muted);
+                    font-size:14px;
+                ">
+
+                    📅 ${task.scheduledDates[0]}
+
+                </div>
+
+                ${
+                    goal
+                    ? `
+                        <div class="badges">
+
+                            <div class="
+                                badge goal-badge
+                            ">
+                                🎯 ${goal.name}
+                            </div>
+
+                        </div>
+                    `
+                    : ''
+                }
+
+            </div>
+
+        `;
+    });
+
 }
 
 function renderHistory(){
@@ -915,12 +1018,14 @@ function renderHistory(){
 
     const completed =
     tasks.filter(task =>
+        shouldShowTask(task,date)
+        &&
         task.completedDates.includes(date)
     );
 
     const missed =
     tasks.filter(task =>
-        task.scheduledDates.includes(date)
+        shouldShowTask(task,date)
         &&
         !task.completedDates.includes(date)
     );
@@ -929,15 +1034,18 @@ function renderHistory(){
 
         <div>
 
-            <div style="margin-bottom:12px;">
+            <div style="
+                margin-bottom:12px;
+                font-weight:700;
+            ">
                 ✅ Выполнено
             </div>
 
             ${
                 completed.length
-                ? completed.map(t => `
-                    <div class="history-item">
-                        ${t.text}
+                ? completed.map(task => `
+                    <div class="plan-task">
+                        ${task.text}
                     </div>
                 `).join('')
                 : `
@@ -951,15 +1059,18 @@ function renderHistory(){
 
         <div style="margin-top:24px;">
 
-            <div style="margin-bottom:12px;">
+            <div style="
+                margin-bottom:12px;
+                font-weight:700;
+            ">
                 ❌ Не выполнено
             </div>
 
             ${
                 missed.length
-                ? missed.map(t => `
-                    <div class="history-item">
-                        ${t.text}
+                ? missed.map(task => `
+                    <div class="plan-task">
+                        ${task.text}
                     </div>
                 `).join('')
                 : `
@@ -979,38 +1090,32 @@ function renderStats(){
     const date =
     document.getElementById('viewDate').value;
 
-    let doneToday = 0;
+    const todayTasks =
+    tasks.filter(task =>
+        shouldShowTask(task,date)
+    );
 
-    tasks.forEach(task => {
-
-        if(
-            task.completedDates.includes(date)
-        ){
-            doneToday++;
-        }
-
-    });
+    const done =
+    todayTasks.filter(task =>
+        task.completedDates.includes(date)
+    ).length;
 
     document.getElementById('doneToday')
-    .innerText = doneToday;
+    .innerText = done;
 
     let totalCompleted = 0;
-    let totalScheduled = 0;
 
     tasks.forEach(task => {
 
         totalCompleted +=
         task.completedDates.length;
 
-        totalScheduled +=
-        task.scheduledDates.length;
-
     });
 
     const efficiency =
-    totalScheduled
+    tasks.length
     ? Math.round(
-        (totalCompleted / totalScheduled)
+        (totalCompleted / tasks.length)
         * 100
     )
     : 0;
@@ -1034,6 +1139,7 @@ function renderStats(){
     .innerText = streaks;
 
     calculateMoney();
+
 }
 
 function calculateMoney(){
@@ -1057,14 +1163,42 @@ function calculateMoney(){
     tasks.forEach(task => {
 
         money +=
-        task.completedDates.length * plus;
+        task.completedDates.length
+        * plus;
 
-        const missed =
-        task.scheduledDates.length
-        -
-        task.completedDates.length;
+        if(task.recurring){
 
-        money -= missed * minus;
+            const days =
+            Math.max(
+                0,
+                Math.floor(
+                    (
+                        new Date()
+                        -
+                        new Date(task.createdAt)
+                    )
+                    /
+                    86400000
+                )
+            );
+
+            const missed =
+            days
+            -
+            task.completedDates.length;
+
+            money -= missed * minus;
+
+        }else{
+
+            const missed =
+            task.scheduledDates.length
+            -
+            task.completedDates.length;
+
+            money -= missed * minus;
+
+        }
 
     });
 
@@ -1102,6 +1236,7 @@ function renderAll(){
 
     renderTasks();
     renderGoals();
+    renderPlannedTasks();
     renderHistory();
     renderStats();
 
@@ -1109,12 +1244,6 @@ function renderAll(){
 
 document.getElementById('viewDate')
 .addEventListener('change', renderAll);
-
-document.getElementById('weekPlan')
-.addEventListener('input', save);
-
-document.getElementById('monthPlan')
-.addEventListener('input', save);
 
 renderGoalOptions();
 renderAll();
