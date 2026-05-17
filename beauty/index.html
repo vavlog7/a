@@ -50,6 +50,7 @@ section{
 .hero{
   padding-top:24px;
   position:relative;
+  animation:fadeUp .9s ease forwards;
 }
 
 .bg-blur{
@@ -115,15 +116,26 @@ h1{
   background:linear-gradient(135deg,#ff2e88,#ff0066);
   box-shadow:0 10px 40px rgba(255,0,102,.45);
   transition:.3s;
+  animation:pulseGlow 2.5s infinite;
 }
 
 .btn:hover{
-  transform:translateY(-2px);
+  transform:translateY(-3px);
 }
 
 .hero-img{
   margin-top:26px;
   position:relative;
+  overflow:hidden;
+  border-radius:24px;
+}
+
+.hero-img img{
+  transition:1s;
+}
+
+.hero-img:hover img{
+  transform:scale(1.05);
 }
 
 .floating-card{
@@ -136,6 +148,7 @@ h1{
   padding:14px;
   border-radius:18px;
   width:180px;
+  animation:floatCard 4s ease-in-out infinite;
 }
 
 .floating-card h3{
@@ -158,6 +171,13 @@ h1{
   padding:26px;
   position:relative;
   overflow:hidden;
+  transition:.35s;
+  animation:fadeUp .9s ease forwards;
+}
+
+.card:hover{
+  transform:translateY(-4px);
+  border:1px solid rgba(255,255,255,.15);
 }
 
 .card::before{
@@ -170,6 +190,14 @@ h1{
   top:-50px;
   right:-50px;
   opacity:.25;
+}
+
+.card img{
+  transition:1s;
+}
+
+.card:hover img{
+  transform:scale(1.03);
 }
 
 h2{
@@ -214,6 +242,11 @@ h2{
   padding:22px 14px;
   text-align:center;
   border:1px solid rgba(255,255,255,.05);
+  transition:.3s;
+}
+
+.stat:hover{
+  transform:scale(1.05);
 }
 
 .stat h3{
@@ -264,6 +297,7 @@ li::before{
   border-radius:24px;
   padding:24px;
   margin:16px;
+  animation:fadeUp .9s ease forwards;
 }
 
 .warning h2{
@@ -290,6 +324,7 @@ input,textarea{
   color:#fff;
   font-size:15px;
   font-family:'Montserrat',sans-serif;
+  transition:.25s;
 }
 
 textarea{
@@ -301,6 +336,7 @@ input:focus,
 textarea:focus{
   outline:none;
   border:1px solid #ff2e88;
+  transform:scale(1.02);
 }
 
 .success{
@@ -342,6 +378,56 @@ textarea:focus{
   font-size:13px;
   color:#9f9f9f;
   line-height:1.6;
+}
+
+/* ========================= */
+/* ANIMATIONS */
+/* ========================= */
+
+@keyframes floatCard {
+
+0%{
+transform:translateY(0px);
+}
+
+50%{
+transform:translateY(-8px);
+}
+
+100%{
+transform:translateY(0px);
+}
+
+}
+
+@keyframes fadeUp {
+
+0%{
+opacity:0;
+transform:translateY(40px);
+}
+
+100%{
+opacity:1;
+transform:translateY(0);
+}
+
+}
+
+@keyframes pulseGlow {
+
+0%{
+box-shadow:0 0 0 rgba(255,46,136,0.4);
+}
+
+50%{
+box-shadow:0 0 35px rgba(255,46,136,0.6);
+}
+
+100%{
+box-shadow:0 0 0 rgba(255,46,136,0.4);
+}
+
 }
 
 </style>
@@ -535,6 +621,8 @@ textarea:focus{
 
 <input type="tel" id="phone" placeholder="Телефон або Telegram" required>
 
+<input type="text" id="instagram" placeholder="Ваш Instagram (@username)" required>
+
 <textarea id="message" placeholder="Коротко опишіть вашу ситуацію"></textarea>
 
 <a 
@@ -601,12 +689,17 @@ form.addEventListener('submit', async (e)=>{
 e.preventDefault();
 
 const name = document.getElementById('name').value;
+
 const phone = document.getElementById('phone').value;
+
+const instagram = document.getElementById('instagram').value;
+
 const message = document.getElementById('message').value;
 
 const data = {
 name,
 phone,
+instagram,
 message,
 date:new Date().toLocaleString()
 };
@@ -647,6 +740,8 @@ const telegramMessage = `
 👤 Ім’я: ${name}
 
 📱 Контакт: ${phone}
+
+📸 Instagram: ${instagram}
 
 💬 Запит:
 ${message}
