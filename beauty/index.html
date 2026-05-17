@@ -1,1 +1,690 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
+<title>Практична консультація для б'юті майстрів</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  background:#070707;
+  color:#fff;
+  font-family:'Montserrat',sans-serif;
+  overflow-x:hidden;
+}
+
+img{
+  width:100%;
+  display:block;
+  border-radius:24px;
+}
+
+.container{
+  width:100%;
+  max-width:480px;
+  margin:0 auto;
+  position:relative;
+}
+
+section{
+  padding:22px;
+}
+
+.hero{
+  padding-top:24px;
+  position:relative;
+}
+
+.bg-blur{
+  position:absolute;
+  width:280px;
+  height:280px;
+  background:#ff2e88;
+  filter:blur(120px);
+  top:-100px;
+  right:-100px;
+  opacity:.35;
+  z-index:-1;
+}
+
+.badge{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:10px 16px;
+  border-radius:100px;
+  background:rgba(255,255,255,0.08);
+  border:1px solid rgba(255,255,255,0.08);
+  backdrop-filter:blur(10px);
+  font-size:13px;
+  font-weight:700;
+  margin-bottom:20px;
+}
+
+h1{
+  font-size:38px;
+  line-height:1.05;
+  font-weight:900;
+  margin-bottom:20px;
+}
+
+.gradient{
+  background:linear-gradient(90deg,#ff2e88,#ff9fcb);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+.subtitle{
+  color:#d2d2d2;
+  font-size:17px;
+  line-height:1.7;
+  margin-bottom:26px;
+}
+
+.btn{
+  width:100%;
+  border:none;
+  cursor:pointer;
+  text-decoration:none;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:20px;
+  border-radius:22px;
+  font-size:17px;
+  font-weight:800;
+  color:#fff;
+  background:linear-gradient(135deg,#ff2e88,#ff0066);
+  box-shadow:0 10px 40px rgba(255,0,102,.45);
+  transition:.3s;
+}
+
+.btn:hover{
+  transform:translateY(-2px);
+}
+
+.hero-img{
+  margin-top:26px;
+  position:relative;
+}
+
+.floating-card{
+  position:absolute;
+  bottom:14px;
+  left:14px;
+  background:rgba(0,0,0,.75);
+  border:1px solid rgba(255,255,255,.12);
+  backdrop-filter:blur(10px);
+  padding:14px;
+  border-radius:18px;
+  width:180px;
+}
+
+.floating-card h3{
+  font-size:26px;
+  color:#ff5fa4;
+  margin-bottom:4px;
+}
+
+.floating-card p{
+  font-size:12px;
+  color:#ddd;
+  line-height:1.4;
+}
+
+.card{
+  margin:16px;
+  background:linear-gradient(180deg,#151515,#0c0c0c);
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:28px;
+  padding:26px;
+  position:relative;
+  overflow:hidden;
+}
+
+.card::before{
+  content:'';
+  position:absolute;
+  width:140px;
+  height:140px;
+  background:#ff2e88;
+  filter:blur(90px);
+  top:-50px;
+  right:-50px;
+  opacity:.25;
+}
+
+h2{
+  font-size:28px;
+  line-height:1.2;
+  margin-bottom:18px;
+  font-weight:800;
+}
+
+.text{
+  color:#d0d0d0;
+  line-height:1.8;
+  font-size:15px;
+  margin-bottom:16px;
+}
+
+.highlight{
+  color:#ff76b4;
+  font-weight:700;
+}
+
+.quote{
+  background:#0f0f0f;
+  border-left:4px solid #ff2e88;
+  padding:18px;
+  border-radius:18px;
+  line-height:1.8;
+  color:#fff;
+  margin-top:18px;
+}
+
+.stats{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:14px;
+  margin-top:20px;
+}
+
+.stat{
+  background:#0b0b0b;
+  border-radius:24px;
+  padding:22px 14px;
+  text-align:center;
+  border:1px solid rgba(255,255,255,.05);
+}
+
+.stat h3{
+  font-size:34px;
+  color:#ff5fa4;
+  margin-bottom:6px;
+  font-weight:900;
+}
+
+.stat span{
+  font-size:13px;
+  color:#cfcfcf;
+  line-height:1.4;
+  display:block;
+}
+
+ul{
+  margin-top:20px;
+}
+
+li{
+  list-style:none;
+  position:relative;
+  padding-left:34px;
+  margin-bottom:18px;
+  line-height:1.7;
+  color:#e3e3e3;
+}
+
+li::before{
+  content:'✓';
+  position:absolute;
+  left:0;
+  top:0;
+  width:24px;
+  height:24px;
+  border-radius:50%;
+  background:#ff2e88;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:12px;
+  font-weight:bold;
+}
+
+.warning{
+  background:linear-gradient(135deg,#ff2e88,#ff0055);
+  border-radius:24px;
+  padding:24px;
+  margin:16px;
+}
+
+.warning h2{
+  margin-bottom:14px;
+}
+
+.warning p{
+  color:#fff;
+  line-height:1.7;
+}
+
+.form-box{
+  margin-top:24px;
+}
+
+input,textarea{
+  width:100%;
+  border:none;
+  background:#0b0b0b;
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:20px;
+  padding:18px;
+  margin-bottom:14px;
+  color:#fff;
+  font-size:15px;
+  font-family:'Montserrat',sans-serif;
+}
+
+textarea{
+  min-height:120px;
+  resize:none;
+}
+
+input:focus,
+textarea:focus{
+  outline:none;
+  border:1px solid #ff2e88;
+}
+
+.success{
+  display:none;
+  margin-top:16px;
+  background:#17361f;
+  color:#8dffb2;
+  padding:18px;
+  border-radius:18px;
+  text-align:center;
+  font-weight:600;
+}
+
+.footer{
+  text-align:center;
+  padding:30px 20px 60px;
+}
+
+.instagram{
+  display:inline-block;
+  margin-top:14px;
+  color:#ff5fa4;
+  font-weight:800;
+  text-decoration:none;
+  font-size:18px;
+}
+
+.insta-link{
+  display:block;
+  text-align:center;
+  margin-bottom:18px;
+  color:#ff6cab;
+  text-decoration:none;
+  font-weight:700;
+  line-height:1.5;
+}
+
+.small{
+  font-size:13px;
+  color:#9f9f9f;
+  line-height:1.6;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="bg-blur"></div>
+
+<section class="hero">
+
+<div class="badge">
+🔥 Практична консультація для б’юті майстрів
+</div>
+
+<h1>
+Запис на <span class="gradient">2 місяці вперед</span> завдяки рекламі
+</h1>
+
+<p class="subtitle">
+Навчу тебе запускати рекламу самостійно та отримувати стабільний потік клієнтів без постійної залежності від таргетологів.
+</p>
+
+<a href="#form" class="btn">
+ХОЧУ НА КОНСУЛЬТАЦІЮ
+</a>
+
+<div class="hero-img">
+
+<img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=1200&auto=format&fit=crop" alt="beauty master">
+
+<div class="floating-card">
+<h3>295 заявок</h3>
+<p>
+за 2 місяці після запуску реклами
+</p>
+</div>
+
+</div>
+
+</section>
+
+<div class="card">
+
+<h2>
+Чому більшість майстрів <span class="gradient">зливають бюджет</span> на рекламу?
+</h2>
+
+<p class="text">
+Бо запускають рекламу навмання.
+Без системи.
+Без розуміння як працює рекламний кабінет.
+</p>
+
+<p class="text">
+Таргетологи говорять складними словами,
+беруть гроші,
+але більшість майстрів так і не розуміє:
+<span class="highlight">за що вони платять.</span>
+</p>
+
+<ul>
+<li>немає стабільних заявок</li>
+<li>страшно запускати рекламу самостійно</li>
+<li>постійна залежність від таргетологів</li>
+<li>бюджет витрачається без контролю</li>
+</ul>
+
+</div>
+
+<div class="card">
+
+<h2>
+Історія Анни
+</h2>
+
+<img src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?q=80&w=1200&auto=format&fit=crop" alt="girl">
+
+<p class="text" style="margin-top:18px;">
+Анна вже працювала з таргетологами.
+Витрачала гроші.
+Запускала рекламу.
+</p>
+
+<p class="text">
+Але не бачила стабільного результату.
+</p>
+
+<div class="quote">
+“Хочу навчитися запускати рекламу сама та контролювати результат.”
+</div>
+
+</div>
+
+<div class="card">
+
+<h2>
+Результати після консультації
+</h2>
+
+<div class="stats">
+
+<div class="stat">
+<h3>$450</h3>
+<span>витрати на рекламу</span>
+</div>
+
+<div class="stat">
+<h3>295</h3>
+<span>отриманих заявок</span>
+</div>
+
+<div class="stat">
+<h3>$1.53</h3>
+<span>середня ціна заявки</span>
+</div>
+
+<div class="stat">
+<h3>2 міс.</h3>
+<span>запис вперед</span>
+</div>
+
+</div>
+
+<p class="text" style="margin-top:22px;">
+Анна повністю заповнила запис на 2 місяці вперед та перестала залежати від таргетологів.
+</p>
+
+</div>
+
+<div class="warning">
+
+<h2>
+⚡ Це не випадковість
+</h2>
+
+<p>
+Більшість майстрів запускають рекламу самостійно вже в день консультації.
+</p>
+
+<p style="margin-top:14px;">
+Бо коли є зрозуміла система —
+реклама стає простим інструментом для отримання клієнтів.
+</p>
+
+</div>
+
+<div class="card">
+
+<h2>
+Що ти отримаєш
+</h2>
+
+<img src="https://images.unsplash.com/photo-1515377905703-c4788e51af15?q=80&w=1200&auto=format&fit=crop" alt="work">
+
+<ul>
+
+<li>розбір твоєї ситуації</li>
+
+<li>аналіз помилок у рекламі</li>
+
+<li>правильний підбір бюджету</li>
+
+<li>працюючі креативи для б’юті ніші</li>
+
+<li>запуск реклами разом зі мною</li>
+
+<li>10 днів підтримки після консультації</li>
+
+</ul>
+
+</div>
+
+<div class="card" id="form">
+
+<h2>
+Залиш заявку
+</h2>
+
+<p class="text">
+Заповни форму нижче і я зв’яжусь з тобою найближчим часом 👇
+</p>
+
+<div class="form-box">
+
+<form id="leadForm">
+
+<input type="text" id="name" placeholder="Ваше ім’я" required>
+
+<input type="tel" id="phone" placeholder="Телефон або Telegram" required>
+
+<textarea id="message" placeholder="Коротко опишіть вашу ситуацію"></textarea>
+
+<a 
+href="https://www.instagram.com/a_valinytskyi/" 
+target="_blank"
+class="insta-link"
+>
+Або напишіть мені в Instagram → @a_valinytskyi
+</a>
+
+<button class="btn" type="submit">
+ЗАПИСАТИСЬ НА КОНСУЛЬТАЦІЮ
+</button>
+
+</form>
+
+<div class="success" id="successMessage">
+✅ Заявку успішно відправлено
+</div>
+
+</div>
+
+</div>
+
+<div class="footer">
+
+<p class="small">
+Instagram для зв’язку
+</p>
+
+<a 
+class="instagram"
+href="https://www.instagram.com/a_valinytskyi/"
+target="_blank"
+>
+@a_valinytskyi
+</a>
+
+</div>
+
+</div>
+
+<script>
+
+// ===================================================
+// ВСТАВЬ СВОИ ДАННЫЕ
+// ===================================================
+
+// GOOGLE APPS SCRIPT URL
+const GOOGLE_SCRIPT_URL = "PASTE_GOOGLE_SCRIPT_URL_HERE";
+
+// TELEGRAM BOT TOKEN
+const TELEGRAM_BOT_TOKEN = "PASTE_TELEGRAM_BOT_TOKEN";
+
+// TELEGRAM CHAT ID
+const TELEGRAM_CHAT_ID = "PASTE_TELEGRAM_CHAT_ID";
+
+// ===================================================
+
+const form = document.getElementById('leadForm');
+
+form.addEventListener('submit', async (e)=>{
+
+e.preventDefault();
+
+const name = document.getElementById('name').value;
+const phone = document.getElementById('phone').value;
+const message = document.getElementById('message').value;
+
+const data = {
+name,
+phone,
+message,
+date:new Date().toLocaleString()
+};
+
+// ===========================
+// GOOGLE SHEETS
+// ===========================
+
+try{
+
+await fetch(GOOGLE_SCRIPT_URL,{
+
+method:"POST",
+
+mode:"no-cors",
+
+headers:{
+"Content-Type":"application/json"
+},
+
+body:JSON.stringify(data)
+
+});
+
+}catch(err){
+
+console.log(err);
+
+}
+
+// ===========================
+// TELEGRAM
+// ===========================
+
+const telegramMessage = `
+🔥 Нова заявка з сайту
+
+👤 Ім’я: ${name}
+
+📱 Контакт: ${phone}
+
+💬 Запит:
+${message}
+`;
+
+try{
+
+await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`,{
+
+method:"POST",
+
+headers:{
+"Content-Type":"application/json"
+},
+
+body:JSON.stringify({
+
+chat_id:TELEGRAM_CHAT_ID,
+
+text:telegramMessage
+
+})
+
+});
+
+}catch(err){
+
+console.log(err);
+
+}
+
+document.getElementById('successMessage').style.display = 'block';
+
+form.reset();
+
+});
+
+</script>
+
+</body>
+</html>
