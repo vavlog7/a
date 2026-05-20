@@ -21,7 +21,7 @@ input[type=number]::-webkit-outer-spin-button,input[type=number]::-webkit-inner-
 .clabel{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:4px;}
 .ctitle{font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:1px;margin-bottom:14px;}
 .week-nav{display:flex;align-items:center;gap:8px;margin-bottom:14px;}
-.wbtn{background:var(--bg3);border:0.5px solid var(--border);border-radius:8px;color:var(--text);font-size:20px;width:40px;height:40px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;line-height:1;}
+.wbtn{background:var(--bg3);border:0.5px solid var(--border);border-radius:8px;color:var(--text);font-size:20px;width:40px;height:40px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
 .winfo{flex:1;text-align:center;}
 .winfo .wnum{font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:1px;}
 .winfo .wdates{font-size:11px;color:var(--muted);font-family:'DM Mono',monospace;}
@@ -88,13 +88,11 @@ input[type=number]::-webkit-outer-spin-button,input[type=number]::-webkit-inner-
     <div class="badge">4 дня</div>
   </div>
 
-  <!-- SYNC STATUS -->
   <div class="sync-bar">
-    <div class="sync-dot" id="syncDot"></div>
-    <span class="sync-text" id="syncText">Подключение к облаку...</span>
+    <div class="sync-dot loading" id="syncDot"></div>
+    <span class="sync-text" id="syncText">Подключение...</span>
   </div>
 
-  <!-- WEEK CARD -->
   <div class="card">
     <div class="clabel">Неделя</div>
     <div class="week-nav">
@@ -105,34 +103,22 @@ input[type=number]::-webkit-outer-spin-button,input[type=number]::-webkit-inner-
       </div>
       <button class="wbtn" onclick="changeWeek(1)">›</button>
     </div>
-
     <div class="clabel">Вес на этой неделе</div>
     <div class="w2">
       <div class="wbox">
         <label>Начало недели</label>
-        <div class="row">
-          <input type="number" id="startW" step="0.1" min="40" max="200" placeholder="—" oninput="onWeightChange()"/>
-          <span class="unit">кг</span>
-        </div>
+        <div class="row"><input type="number" id="startW" step="0.1" min="40" max="200" placeholder="—" oninput="onWeightChange()"/><span class="unit">кг</span></div>
       </div>
       <div class="wbox">
         <label>Конец недели</label>
-        <div class="row">
-          <input type="number" id="endW" step="0.1" min="40" max="200" placeholder="—" oninput="onWeightChange()"/>
-          <span class="unit">кг</span>
-        </div>
+        <div class="row"><input type="number" id="endW" step="0.1" min="40" max="200" placeholder="—" oninput="onWeightChange()"/><span class="unit">кг</span></div>
       </div>
     </div>
-
-    <div class="prog-meta">
-      <span>Прогресс к цели (93 кг)</span>
-      <strong id="pctVal">—</strong>
-    </div>
+    <div class="prog-meta"><span>Прогресс к цели (93 кг)</span><strong id="pctVal">—</strong></div>
     <div class="prog-track"><div class="prog-fill" id="progFill" style="width:0%"></div></div>
     <div class="prog-hint" id="progHint">Введите вес, чтобы увидеть прогресс</div>
   </div>
 
-  <!-- HISTORY CARD -->
   <div class="card">
     <div class="clabel">Динамика по неделям</div>
     <div class="ctitle">История веса</div>
@@ -141,11 +127,9 @@ input[type=number]::-webkit-outer-spin-button,input[type=number]::-webkit-inner-
     <div id="historyList" style="margin-top:12px;"></div>
   </div>
 
-  <!-- WORKOUT CARD -->
   <div class="card">
     <div class="clabel">Тренировочный журнал</div>
     <div class="ctitle">УПРАЖНЕНИЯ</div>
-
     <div class="tabs">
       <button class="tbtn active" onclick="switchDay(0)">День 1</button>
       <button class="tbtn" onclick="switchDay(1)">День 2</button>
@@ -153,7 +137,6 @@ input[type=number]::-webkit-outer-spin-button,input[type=number]::-webkit-inner-
       <button class="tbtn" onclick="switchDay(3)">День 4</button>
     </div>
 
-    <!-- DAY 1 -->
     <div class="dpanel active" id="dp-0">
       <div class="col-hdr"><span>Объём</span><span>Вес кг</span><span>Подх.</span><span>Повт.</span></div>
       <div class="exblock"><div class="exname">Подтягивания в гравитоне</div><div class="ex-row"><div class="vol-cell" id="v-0-0">—</div><input type="number" placeholder="кг" oninput="calcVol(0,0,this)"><input type="number" placeholder="подх" oninput="calcVol(0,0,this)"><input type="number" placeholder="повт" oninput="calcVol(0,0,this)"></div></div>
@@ -167,7 +150,6 @@ input[type=number]::-webkit-outer-spin-button,input[type=number]::-webkit-inner-
       <div class="toast" id="toast-0"></div>
     </div>
 
-    <!-- DAY 2 -->
     <div class="dpanel" id="dp-1">
       <div class="col-hdr"><span>Объём</span><span>Вес кг</span><span>Подх.</span><span>Повт.</span></div>
       <div class="exblock"><div class="exname">Жим гантелей лёжа</div><div class="ex-row"><div class="vol-cell" id="v-1-0">—</div><input type="number" placeholder="кг" oninput="calcVol(1,0,this)"><input type="number" placeholder="подх" oninput="calcVol(1,0,this)"><input type="number" placeholder="повт" oninput="calcVol(1,0,this)"></div></div>
@@ -181,7 +163,6 @@ input[type=number]::-webkit-outer-spin-button,input[type=number]::-webkit-inner-
       <div class="toast" id="toast-1"></div>
     </div>
 
-    <!-- DAY 3 -->
     <div class="dpanel" id="dp-2">
       <div class="col-hdr"><span>Объём</span><span>Вес кг</span><span>Подх.</span><span>Повт.</span></div>
       <div class="exblock"><div class="exname">Тяга штанги в наклоне</div><div class="ex-row"><div class="vol-cell" id="v-2-0">—</div><input type="number" placeholder="кг" oninput="calcVol(2,0,this)"><input type="number" placeholder="подх" oninput="calcVol(2,0,this)"><input type="number" placeholder="повт" oninput="calcVol(2,0,this)"></div></div>
@@ -196,7 +177,6 @@ input[type=number]::-webkit-outer-spin-button,input[type=number]::-webkit-inner-
       <div class="toast" id="toast-2"></div>
     </div>
 
-    <!-- DAY 4 -->
     <div class="dpanel" id="dp-3">
       <div class="col-hdr"><span>Объём</span><span>Вес кг</span><span>Подх.</span><span>Повт.</span></div>
       <div class="exblock"><div class="exname">Жимчик твой любимый</div><div class="ex-row"><div class="vol-cell" id="v-3-0">—</div><input type="number" placeholder="кг" oninput="calcVol(3,0,this)"><input type="number" placeholder="подх" oninput="calcVol(3,0,this)"><input type="number" placeholder="повт" oninput="calcVol(3,0,this)"></div></div>
@@ -208,83 +188,99 @@ input[type=number]::-webkit-outer-spin-button,input[type=number]::-webkit-inner-
       <button class="savebtn" onclick="saveDay(3)">Сохранить в облако</button>
       <div class="toast" id="toast-3"></div>
     </div>
-
   </div>
 </div>
 
 <script>
-// ============================================================
-// ВСТАВЬ СЮДА URL ТВОЕГО GOOGLE APPS SCRIPT
-const API_URL = 'https://script.google.com/macros/s/AKfycbyiqTr3lGsLnvEu8G8eeNpF7dOSdjPqe_L86EZbC4P52_pzq0eyD4aprlGjy_zk2kfl/exec';
-// ============================================================
+const API = 'https://script.google.com/macros/s/AKfycbyLWr0pyGDiIp7zBs_chM3WDyQDQ-s5bTmCV2hMxHKN_-OfdWAqhossFpEWYB9LhqDs/exec';
+const GOAL = 93, START_W = 105;
+let db = {}, currentWeek = 1, saveTimer = null;
 
-const GOAL = 93;
-const START_WEIGHT = 105;
-
-let db = {}; // все данные из Google Sheets
-let currentWeek = 1;
-let saveTimer = null;
-
-// ---- SYNC UI ----
-function setSyncStatus(state, text) {
-  const dot = document.getElementById('syncDot');
-  const txt = document.getElementById('syncText');
-  dot.className = 'sync-dot ' + state;
-  txt.textContent = text;
+// ---- JSONP для GET (обходит CORS) ----
+function jsonpGet(url) {
+  return new Promise((resolve, reject) => {
+    const cb = 'cb_' + Date.now();
+    const script = document.createElement('script');
+    const timeout = setTimeout(() => {
+      delete window[cb];
+      script.remove();
+      reject(new Error('timeout'));
+    }, 8000);
+    window[cb] = (data) => {
+      clearTimeout(timeout);
+      delete window[cb];
+      script.remove();
+      resolve(data);
+    };
+    script.src = url + (url.includes('?') ? '&' : '?') + 'callback=' + cb;
+    script.onerror = () => { clearTimeout(timeout); delete window[cb]; script.remove(); reject(new Error('script error')); };
+    document.head.appendChild(script);
+  });
 }
 
-// ---- LOAD FROM CLOUD ----
+// ---- POST через форму (обходит CORS, no-cors) ----
+async function apiPost(payload) {
+  try {
+    await fetch(API, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+    return true;
+  } catch(e) {
+    return false;
+  }
+}
+
+function setSyncStatus(state, text) {
+  document.getElementById('syncDot').className = 'sync-dot ' + state;
+  document.getElementById('syncText').textContent = text;
+}
+
 async function loadFromCloud() {
   setSyncStatus('loading', 'Загрузка данных...');
   try {
-    const res = await fetch(API_URL + '?action=load');
-    const data = await res.json();
+    const data = await jsonpGet(API + '?action=load');
     if (data.weekData) db.weekData = data.weekData;
     if (data.workoutData) db.workoutData = data.workoutData;
-    setSyncStatus('ok', 'Данные загружены из облака');
+    setSyncStatus('ok', 'Данные загружены ✓');
     renderWeekUI();
   } catch(e) {
-    setSyncStatus('err', 'Нет связи — работаем офлайн');
+    setSyncStatus('err', 'Ошибка соединения');
     renderWeekUI();
   }
 }
 
-// ---- SAVE TO CLOUD ----
 async function saveToCloud(key, value) {
   setSyncStatus('loading', 'Сохранение...');
-  try {
-    await fetch(API_URL, {
-      method: 'POST',
-      body: JSON.stringify({ action: 'save', payload: { key, value } })
-    });
-    setSyncStatus('ok', 'Сохранено в облако ✓');
-  } catch(e) {
+  const ok = await apiPost({ action: 'save', payload: { key, value } });
+  if (ok) {
+    setSyncStatus('ok', 'Сохранено ✓');
+  } else {
     setSyncStatus('err', 'Ошибка сохранения');
   }
 }
 
 function debounceSave(key, value) {
   clearTimeout(saveTimer);
-  saveTimer = setTimeout(() => saveToCloud(key, value), 800);
+  saveTimer = setTimeout(() => saveToCloud(key, value), 1000);
 }
 
-// ---- WEEK DATES ----
-function getWeekDates(weekNum) {
+// ---- WEEKS ----
+function getWeekDates(w) {
   const now = new Date();
   const dow = now.getDay() === 0 ? 6 : now.getDay() - 1;
-  const monday = new Date(now);
-  monday.setDate(now.getDate() - dow + (weekNum - 1) * 7);
-  const sunday = new Date(monday);
-  sunday.setDate(monday.getDate() + 6);
-  const fmt = d => d.toLocaleDateString('ru-RU', {day:'2-digit', month:'2-digit'});
-  return { label: `${fmt(monday)} – ${fmt(sunday)}` };
+  const mon = new Date(now);
+  mon.setDate(now.getDate() - dow + (w - 1) * 7);
+  const sun = new Date(mon); sun.setDate(mon.getDate() + 6);
+  const fmt = d => d.toLocaleDateString('ru-RU', { day: '2-digit', month: '2-digit' });
+  return `${fmt(mon)} – ${fmt(sun)}`;
 }
 
-// ---- WEEK RENDER ----
 function renderWeekUI() {
-  const dates = getWeekDates(currentWeek);
   document.getElementById('wnum').textContent = `Неделя ${currentWeek}`;
-  document.getElementById('wdates').textContent = dates.label;
+  document.getElementById('wdates').textContent = getWeekDates(currentWeek);
   const wd = (db.weekData || {})[currentWeek] || {};
   document.getElementById('startW').value = wd.startW != null ? wd.startW : '';
   document.getElementById('endW').value = wd.endW != null ? wd.endW : '';
@@ -292,8 +288,8 @@ function renderWeekUI() {
   renderHistory();
 }
 
-function changeWeek(delta) {
-  currentWeek = Math.max(1, currentWeek + delta);
+function changeWeek(d) {
+  currentWeek = Math.max(1, currentWeek + d);
   renderWeekUI();
 }
 
@@ -302,10 +298,8 @@ function onWeightChange() {
   if (!db.weekData[currentWeek]) db.weekData[currentWeek] = {};
   const sw = parseFloat(document.getElementById('startW').value);
   const ew = parseFloat(document.getElementById('endW').value);
-  if (!isNaN(sw)) db.weekData[currentWeek].startW = sw;
-  else delete db.weekData[currentWeek].startW;
-  if (!isNaN(ew)) db.weekData[currentWeek].endW = ew;
-  else delete db.weekData[currentWeek].endW;
+  if (!isNaN(sw)) db.weekData[currentWeek].startW = sw; else delete db.weekData[currentWeek].startW;
+  if (!isNaN(ew)) db.weekData[currentWeek].endW = ew; else delete db.weekData[currentWeek].endW;
   updateProgress();
   renderHistory();
   debounceSave('weekData', db.weekData);
@@ -313,14 +307,14 @@ function onWeightChange() {
 
 function updateProgress() {
   const wd = (db.weekData || {})[currentWeek] || {};
-  const cur = wd.endW != null ? wd.endW : (wd.startW != null ? wd.startW : null);
+  const cur = wd.endW ?? wd.startW ?? null;
   if (cur === null) {
     document.getElementById('pctVal').textContent = '—';
     document.getElementById('progFill').style.width = '0%';
     document.getElementById('progHint').textContent = 'Введите вес, чтобы увидеть прогресс';
     return;
   }
-  const pct = Math.max(0, Math.min(100, Math.round(((START_WEIGHT - cur) / (START_WEIGHT - GOAL)) * 100)));
+  const pct = Math.max(0, Math.min(100, Math.round(((START_W - cur) / (START_W - GOAL)) * 100)));
   document.getElementById('pctVal').textContent = pct + '%';
   document.getElementById('progFill').style.width = pct + '%';
   const rem = Math.max(0, cur - GOAL).toFixed(1);
@@ -329,46 +323,34 @@ function updateProgress() {
 
 function renderHistory() {
   const weekData = db.weekData || {};
-  const weeks = Object.keys(weekData).map(Number).filter(w => {
-    const d = weekData[w];
-    return d.startW != null || d.endW != null;
-  }).sort((a,b) => a-b);
-
+  const weeks = Object.keys(weekData).map(Number)
+    .filter(w => weekData[w].startW != null || weekData[w].endW != null)
+    .sort((a, b) => a - b);
   const barsEl = document.getElementById('chartBars');
   const labelsEl = document.getElementById('chartLabels');
   const list = document.getElementById('historyList');
-
-  if (weeks.length === 0) {
-    barsEl.innerHTML = '';
-    labelsEl.innerHTML = '';
+  if (!weeks.length) {
+    barsEl.innerHTML = labelsEl.innerHTML = '';
     list.innerHTML = '<div style="font-size:12px;color:var(--muted);text-align:center;padding:12px 0;">Данных пока нет</div>';
     return;
   }
-
-  const vals = weeks.map(w => { const d = weekData[w]; return d.endW ?? d.startW; });
-  const minV = Math.min(...vals, GOAL) - 0.5;
-  const maxV = Math.max(...vals) + 0.5;
-
-  barsEl.innerHTML = '';
-  labelsEl.innerHTML = '';
+  const vals = weeks.map(w => weekData[w].endW ?? weekData[w].startW);
+  const minV = Math.min(...vals, GOAL) - 0.5, maxV = Math.max(...vals) + 0.5;
+  barsEl.innerHTML = labelsEl.innerHTML = '';
   weeks.forEach(w => {
-    const d = weekData[w];
-    const v = d.endW ?? d.startW;
+    const v = weekData[w].endW ?? weekData[w].startW;
     const pct = Math.round(((v - minV) / (maxV - minV)) * 80 + 10);
-    const isCur = w === currentWeek;
     const bar = document.createElement('div');
     bar.className = 'bar';
-    bar.style.cssText = `height:${pct}%;background:${isCur ? 'var(--accent)' : 'rgba(44,182,125,0.4)'};`;
+    bar.style.cssText = `height:${pct}%;background:${w === currentWeek ? 'var(--accent)' : 'rgba(44,182,125,0.4)'};`;
     barsEl.appendChild(bar);
     const lbl = document.createElement('span');
     lbl.textContent = `В${w}`;
     labelsEl.appendChild(lbl);
   });
-
   list.innerHTML = '';
   weeks.slice().reverse().slice(0, 10).forEach(w => {
     const d = weekData[w];
-    const dates = getWeekDates(w);
     const displayW = d.endW ?? d.startW;
     let deltaHtml = '<span class="wh-delta delta-zero">—</span>';
     if (d.startW != null && d.endW != null) {
@@ -376,26 +358,23 @@ function renderHistory() {
       const cls = diff < 0 ? 'delta-neg' : diff > 0 ? 'delta-pos' : 'delta-zero';
       deltaHtml = `<span class="wh-delta ${cls}">${diff > 0 ? '+' : ''}${diff} кг</span>`;
     }
-    const isCur = w === currentWeek;
     const row = document.createElement('div');
     row.className = 'wh-row';
     row.innerHTML = `
-      <span class="wh-week" style="${isCur ? 'color:var(--accent);font-weight:500;' : ''}">Нед.${w}</span>
-      <span class="wh-dates">${dates.label}</span>
+      <span class="wh-week" style="${w === currentWeek ? 'color:var(--accent);font-weight:500;' : ''}">Нед.${w}</span>
+      <span class="wh-dates">${getWeekDates(w)}</span>
       <span class="wh-val">${displayW != null ? displayW + ' кг' : '—'}</span>
-      ${deltaHtml}
-    `;
+      ${deltaHtml}`;
     list.appendChild(row);
   });
 }
 
 // ---- DAYS ----
 function switchDay(idx) {
-  document.querySelectorAll('.tbtn').forEach((b,i) => b.classList.toggle('active', i===idx));
-  document.querySelectorAll('.dpanel').forEach((p,i) => p.classList.toggle('active', i===idx));
+  document.querySelectorAll('.tbtn').forEach((b, i) => b.classList.toggle('active', i === idx));
+  document.querySelectorAll('.dpanel').forEach((p, i) => p.classList.toggle('active', i === idx));
 }
 
-// ---- VOLUME ----
 const volData = {};
 function calcVol(day, ex, input) {
   const row = input.closest('.ex-row');
@@ -407,7 +386,7 @@ function calcVol(day, ex, input) {
   if (!volData[day]) volData[day] = {};
   volData[day][ex] = vol;
   document.getElementById(`v-${day}-${ex}`).textContent = vol > 0 ? vol.toLocaleString('ru') : '—';
-  const total = Object.values(volData[day]).reduce((a,b) => a+b, 0);
+  const total = Object.values(volData[day]).reduce((a, b) => a + b, 0);
   document.getElementById(`total-${day}`).textContent = total.toLocaleString('ru') + ' кг';
 }
 
@@ -416,22 +395,17 @@ async function saveDay(d) {
   const inputs = panel.querySelectorAll('input');
   const rows = [];
   for (let i = 0; i < inputs.length; i += 3) {
-    rows.push({ w: inputs[i].value, s: inputs[i+1].value, r: inputs[i+2].value });
+    rows.push({ w: inputs[i].value, s: inputs[i + 1].value, r: inputs[i + 2].value });
   }
-  const key = `workout_w${currentWeek}_d${d}`;
-  await saveToCloud(key, rows);
+  await saveToCloud(`workout_w${currentWeek}_d${d}`, rows);
   const t = document.getElementById(`toast-${d}`);
   t.textContent = '✓ Сохранено в облако';
   setTimeout(() => { t.textContent = ''; }, 2000);
 }
 
 // ---- INIT ----
-if (API_URL === 'https://script.google.com/macros/s/AKfycbyiqTr3lGsLnvEu8G8eeNpF7dOSdjPqe_L86EZbC4P52_pzq0eyD4aprlGjy_zk2kfl/exec') {
-  setSyncStatus('err', 'Укажи URL скрипта в коде');
-  renderWeekUI();
-} else {
-  loadFromCloud();
-}
+// Также нужно добавить callback поддержку в Apps Script (doGet с ?callback=)
+loadFromCloud();
 </script>
 </body>
 </html>
