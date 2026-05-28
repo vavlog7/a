@@ -359,6 +359,29 @@ textarea.field{height:82px;padding-top:13px;resize:none}
   .contact h2{font-size:29px}
 }
 
+
+/* v10: additional question and form delivery state */
+.contact .problem-field{
+  height:96px;
+  min-height:96px;
+  padding:13px 12px;
+  line-height:1.45;
+  resize:none;
+}
+.submit-button[disabled]{
+  opacity:.68;
+  pointer-events:none;
+}
+.submit-status{
+  display:none;
+  font-size:11px;
+  line-height:1.45;
+  margin:11px 0 0;
+  color:#ffd400;
+}
+.submit-status.error{display:block;color:#ffb7b7}
+.submit-status.success{display:block;color:#cdecbf}
+
 </style>
 
 <!-- Meta Pixel: вставьте ID пикселя вместо REPLACE_WITH_META_PIXEL_ID -->
@@ -517,10 +540,12 @@ if (META_PIXEL_ID !== 'REPLACE_WITH_META_PIXEL_ID') {
           <span>Примерный прогноз по клиентам на месяц</span>
         </div>
         <form class="lead-form reveal" id="leadForm">
-          <input class="field" type="text" name="name" placeholder="Ваше имя" required>
-          <input class="field" type="text" name="contact" placeholder="Ваш Telegram или Instagram" required>
-          <button class="btn btn-yellow" type="submit">Записаться на разбор →</button>
-          <p class="form-note">После заявки откроется Telegram-бот: там уточним вашу нишу, город и задачу.</p>
+          <input class="field" type="text" name="name" placeholder="Ваше имя" autocomplete="name" required>
+          <input class="field" type="tel" name="phone" placeholder="Номер телефона с Telegram / WhatsApp" autocomplete="tel" required>
+          <textarea class="field problem-field" name="problem" placeholder="Кратко: какие сейчас проблемы с рекламой?" required></textarea>
+          <button class="btn btn-yellow submit-button" type="submit">Записаться на разбор →</button>
+          <p class="submit-status" id="submitStatus" aria-live="polite"></p>
+          <p class="form-note">После заявки откроется Telegram-бот с коротким опросом.</p>
         </form>
       </div>
     </div>
@@ -582,21 +607,92 @@ caseTrack.addEventListener('touchend', (event) => {
   if (Math.abs(distance) > 42) setCase(caseIndex + (distance < 0 ? 1 : -1));
 }, { passive: true });
 
-// Вставьте сюда фактическую ссылку на Telegram-бота перед публикацией.
+// Куда переводить клиента после заявки.
 const TELEGRAM_BOT_URL = 'https://t.me/lead_beauty_bot?start=6a1448a407e392852b077fae';
 
-document.getElementById('leadForm').addEventListener('submit', (event) => {
+// ТЕСТОВОЕ ПОДКЛЮЧЕНИЕ: токен в открытом HTML будет виден посетителям.
+// Перед рабочим запуском перенесите отправку заявки на сервер / serverless-функцию
+// и перевыпустите тестовый токен бота.
+const TELEGRAM_SEND_TOKEN = '8967189056:AAHa-HHhJEP29dCRbypWWsllQi8ww1sMXJc';
+const TELEGRAM_GROUP_CHAT_ID = '-5209820646';
+
+const leadForm = document.getElementById('leadForm');
+const submitStatus = document.getElementById('submitStatus');
+const submitButton = leadForm.querySelector('.submit-button');
+
+function setFormStatus(message, type) {
+  submitStatus.textContent = message;
+  submitStatus.className = 'submit-status ' + (type || '');
+}
+
+function cleanText(value) {
+  return String(value || '').trim().replace(/[<>]/g, '');
+}
+
+leadForm.addEventListener('submit', async (event) => {
   event.preventDefault();
 
-  // Стандартное событие Meta Pixel: заявка на разбор.
-  if (typeof fbq === 'function' && META_PIXEL_ID !== 'REPLACE_WITH_META_PIXEL_ID') {
-    fbq('track', 'Lead');
+  if (
+    TELEGRAM_SEND_TOKEN === 'PASTE_TEST_BOT_TOKEN_HERE' ||
+    TELEGRAM_GROUP_CHAT_ID === 'PASTE_GROUP_CHAT_ID_HERE'
+  ) {
+    setFormStatus('Перед тестом вставьте токен бота и ID группы в код сайта.', 'error');
+    return;
   }
 
-  // Небольшая пауза, чтобы браузер успел отправить событие до перехода в Telegram.
-  setTimeout(() => {
-    window.location.href = TELEGRAM_BOT_URL;
-  }, 250);
+  const data = new FormData(leadForm);
+  const name = cleanText(data.get('name'));
+  const phone = cleanText(data.get('phone'));
+  const problem = cleanText(data.get('problem'));
+
+  const message = [
+    'Новая заявка на разбор с сайта',
+    '',
+    'Имя: ' + name,
+    'Телефон / мессенджер: ' + phone,
+    '',
+    'Что сейчас не получается с рекламой:',
+    problem
+  ].join('\n');
+
+  submitButton.disabled = true;
+  submitButton.textContent = 'Отправляем заявку...';
+  setFormStatus('', '');
+
+  try {
+    const response = await fetch(
+      'https://api.telegram.org/bot' + TELEGRAM_SEND_TOKEN + '/sendMessage',
+      {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({
+          chat_id: TELEGRAM_GROUP_CHAT_ID,
+          text: message
+        })
+      }
+    );
+
+    const result = await response.json();
+    if (!response.ok || !result.ok) {
+      throw new Error(result.description || 'Telegram API error');
+    }
+
+    // Стандартное событие Meta Pixel — только для реально отправленной заявки.
+    if (typeof fbq === 'function' && META_PIXEL_ID !== 'REPLACE_WITH_META_PIXEL_ID') {
+      fbq('track', 'Lead');
+    }
+
+    setFormStatus('Заявка отправлена. Переходим в Telegram...', 'success');
+
+    setTimeout(() => {
+      window.location.href = TELEGRAM_BOT_URL;
+    }, 350);
+  } catch (error) {
+    console.error('Lead delivery error:', error);
+    setFormStatus('Не удалось отправить заявку. Попробуйте ещё раз.', 'error');
+    submitButton.disabled = false;
+    submitButton.textContent = 'Записаться на разбор →';
+  }
 });
 
 </script>
