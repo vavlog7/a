@@ -50,6 +50,6 @@ const SITE_CONFIG = {
 
     // Здесь вставить ссылку на чат-бота, где начинаются уроки ПОСЛЕ оплаты.
     // Эта кнопка размещена на страницах «Спасибо» / «Дякуємо».
-    training: 'https://t.me/IntensbeautyBot?start=67a491ba090766e67709a04e'
+    training: https://t.me/IntensbeautyBot?start=67a491ba090766e67709a04e
   }
 };
