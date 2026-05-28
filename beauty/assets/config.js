@@ -15,11 +15,11 @@ const SITE_CONFIG = {
   telegram: {
     // Здесь вставить токен Telegram-бота, который будет присылать заявки в вашу группу.
     // Пример формата: 123456789:AAExampleTokenHere
-    botToken: 'ЗДЕСЬ_ВСТАВИТЬ_ТОКЕН_TELEGRAM_БОТА',
+    botToken: '8967189056:AAHa-HHhJEP29dCRbypWWsllQi8ww1sMXJc',
 
     // Здесь вставить ID Telegram-группы, куда бот будет присылать заявки.
     // Для супергруппы обычно выглядит так: -1001234567890
-    chatId: 'ЗДЕСЬ_ВСТАВИТЬ_ID_TELEGRAM_ГРУППЫ'
+    chatId: '-5209820646'
   },
 
   payments: {
