@@ -26,20 +26,20 @@ const SITE_CONFIG = {
     ru: {
       // Здесь вставить ссылку WayForPay на оплату 29 € для русской страницы.
       // В WayForPay после оплаты укажите страницу возврата: /thanks/
-      basic: 'ЗДЕСЬ_ВСТАВИТЬ_ССЫЛКУ_WAYFORPAY_29_EUR_RU',
+      basic: 'https://secure.wayforpay.com/button/bc24750d359e6',
 
       // Здесь вставить ссылку WayForPay на оплату 149 € для русской страницы.
       // В WayForPay после оплаты укажите страницу возврата: /thanks/
-      vip: 'ЗДЕСЬ_ВСТАВИТЬ_ССЫЛКУ_WAYFORPAY_149_EUR_RU'
+      vip: 'https://secure.wayforpay.com/button/b9b6f52c5d131'
     },
     ua: {
       // Тут вставити посилання WayForPay на оплату 29 € для української сторінки.
       // У WayForPay після оплати вкажіть сторінку повернення: /ua/thanks/
-      basic: 'ТУТ_ВСТАВИТИ_ПОСИЛАННЯ_WAYFORPAY_29_EUR_UA',
+      basic: 'https://secure.wayforpay.com/button/bc24750d359e6',
 
       // Тут вставити посилання WayForPay на оплату 149 € для української сторінки.
       // У WayForPay після оплати вкажіть сторінку повернення: /ua/thanks/
-      vip: 'ТУТ_ВСТАВИТИ_ПОСИЛАННЯ_WAYFORPAY_149_EUR_UA'
+      vip: 'https://secure.wayforpay.com/button/b9b6f52c5d131'
     }
   },
 
@@ -50,6 +50,6 @@ const SITE_CONFIG = {
 
     // Здесь вставить ссылку на чат-бота, где начинаются уроки ПОСЛЕ оплаты.
     // Эта кнопка размещена на страницах «Спасибо» / «Дякуємо».
-    training: 'ЗДЕСЬ_ВСТАВИТЬ_ССЫЛКУ_НА_ЧАТ_БОТА_С_ОБУЧЕНИЕМ'
+    training: 'https://t.me/IntensbeautyBot?start=67a491ba090766e67709a04e'
   }
 };
