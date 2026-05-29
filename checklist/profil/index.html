@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#F6F1EB" />
+  <title>Готов ли твой beauty-профиль к рекламе?</title>
+  <style>
+    :root{
+      --bg:#F6F1EB;
+      --bg-2:#FFFDFC;
+      --card:#FFFFFF;
+      --text:#1E1A18;
+      --muted:#6F6661;
+      --line:#E9DED6;
+      --accent:#7C3AED;
+      --accent-2:#C084FC;
+      --accent-soft:#F3E8FF;
+      --dark:#1C1720;
+      --ok:#157347;
+      --warn:#A16207;
+      --bad:#B42318;
+      --shadow:0 18px 50px rgba(38,24,20,.09);
+      --radius:26px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      background:linear-gradient(180deg,#EFE7E0 0%, #F6F1EB 100%);
+      color:var(--text);
+      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+      -webkit-font-smoothing:antialiased;
+    }
+    .app{
+      width:min(100%,480px);
+      min-height:100vh;
+      margin:0 auto;
+      background:
+        radial-gradient(circle at top right, rgba(192,132,252,.18), transparent 30%),
+        radial-gradient(circle at 12% 14%, rgba(124,58,237,.10), transparent 25%),
+        var(--bg);
+      position:relative;
+      overflow:hidden;
+      box-shadow:0 0 60px rgba(34,18,15,.08);
+    }
+    .hero{
+      padding:18px 18px 26px;
+    }
+    .navline{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:12px;
+      margin-bottom:22px;
+    }
+    .label,
+    .free-tag{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:34px;
+      border-radius:999px;
+      padding:8px 14px;
+      font-size:11px;
+      font-weight:800;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      border:1px solid rgba(124,58,237,.16);
+      background:rgba(255,255,255,.7);
+      backdrop-filter: blur(12px);
+      color:var(--accent);
+    }
+    .hero-card{
+      position:relative;
+      border-radius:34px;
+      padding:28px 18px 18px;
+      background:
+        linear-gradient(160deg, rgba(255,255,255,.92), rgba(255,255,255,.78)),
+        linear-gradient(135deg, rgba(124,58,237,.18), rgba(192,132,252,.06));
+      border:1px solid rgba(255,255,255,.88);
+      backdrop-filter: blur(16px);
+      box-shadow:var(--shadow);
+      overflow:hidden;
+    }
+    .hero-card:before{
+      content:"";
+      position:absolute;
+      width:160px;height:160px;
+      right:-40px;top:-30px;
+      border-radius:50%;
+      background:radial-gradient(circle, rgba(192,132,252,.40), rgba(192,132,252,0));
+    }
+    .eyebrow{
+      text-align:center;
+      font-size:11px;
+      font-weight:800;
+      letter-spacing:.18em;
+      text-transform:uppercase;
+      color:var(--accent);
+      margin-bottom:14px;
+      position:relative;
+      z-index:1;
+    }
+    h1{
+      margin:0;
+      text-align:center;
+      font-size:42px;
+      line-height:.96;
+      letter-spacing:-.065em;
+      font-weight:900;
+      position:relative;
+      z-index:1;
+    }
+    .highlight{
+      display:block;
+      margin-top:4px;
+      color:var(--accent);
+    }
+    .hero-text{
+      margin:14px auto 20px;
+      max-width:340px;
+      text-align:center;
+      color:var(--muted);
+      font-size:15.5px;
+      line-height:1.55;
+      position:relative;
+      z-index:1;
+    }
+    .author{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      padding:14px;
+      border-radius:20px;
+      background:rgba(255,255,255,.72);
+      border:1px solid rgba(124,58,237,.10);
+      position:relative;
+      z-index:1;
+    }
+    .avatar{
+      width:44px;height:44px;
+      border-radius:50%;
+      flex:0 0 auto;
+      display:grid;
+      place-items:center;
+      font-weight:900;
+      color:#fff;
+      background:linear-gradient(135deg,var(--accent),var(--accent-2));
+      box-shadow:0 10px 22px rgba(124,58,237,.28);
+    }
+    .author b{
+      display:block;
+      font-size:14px;
+      margin-bottom:3px;
+    }
+    .author span{
+      display:block;
+      font-size:12.5px;
+      line-height:1.4;
+      color:var(--muted);
+    }
+    .primary-btn,
+    .cta-btn{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      width:100%;
+      min-height:54px;
+      border-radius:18px;
+      text-align:center;
+      text-decoration:none;
+      font-weight:800;
+      font-size:15px;
+      transition:transform .15s ease, opacity .15s ease;
+    }
+    .primary-btn:active,
+    .cta-btn:active{transform:scale(.985)}
+    .primary-btn{
+      margin-top:16px;
+      background:linear-gradient(135deg,var(--accent),#5B21B6);
+      color:#fff;
+      box-shadow:0 16px 28px rgba(124,58,237,.26);
+    }
+    .section{
+      padding:0 18px;
+    }
+    .intro{
+      margin-top:4px;
+      padding:22px 18px;
+      border-radius:28px;
+      background:var(--card);
+      border:1px solid var(--line);
+      box-shadow:var(--shadow);
+    }
+    h2{
+      margin:0 0 10px;
+      text-align:center;
+      font-size:29px;
+      line-height:1.08;
+      letter-spacing:-.045em;
+    }
+    .intro p{
+      margin:0;
+      color:var(--muted);
+      font-size:15px;
+      line-height:1.56;
+      text-align:left;
+    }
+    .notice{
+      margin-top:15px;
+      padding:15px 16px;
+      border-radius:18px;
+      background:linear-gradient(180deg,#F8F1FF,#FFFFFF);
+      border:1px solid #E7D6FF;
+      color:#4B5563;
+      font-size:14px;
+      line-height:1.5;
+    }
+    .progress{
+      position:sticky;
+      top:0;
+      z-index:10;
+      margin:24px 0 0;
+      padding:12px 18px;
+      background:rgba(246,241,235,.86);
+      backdrop-filter:blur(12px);
+      border-top:1px solid rgba(124,58,237,.08);
+      border-bottom:1px solid rgba(124,58,237,.08);
+    }
+    .progress-head{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      margin-bottom:10px;
+      font-size:13px;
+      color:var(--muted);
+    }
+    .progress-head strong{
+      font-size:21px;
+      color:var(--accent);
+      letter-spacing:-.04em;
+    }
+    .track{
+      height:8px;
+      background:#E7DDD6;
+      border-radius:999px;
+      overflow:hidden;
+    }
+    .bar{
+      width:0%;
+      height:100%;
+      background:linear-gradient(90deg,var(--accent-2),var(--accent));
+      border-radius:999px;
+      transition:width .25s ease;
+    }
+    .group{
+      padding:24px 18px 0;
+    }
+    .group-card{
+      background:var(--card);
+      border:1px solid var(--line);
+      border-radius:28px;
+      box-shadow:var(--shadow);
+      padding:20px 16px 16px;
+    }
+    .group-index{
+      text-align:center;
+      font-size:11px;
+      font-weight:800;
+      letter-spacing:.16em;
+      text-transform:uppercase;
+      color:var(--accent);
+      margin-bottom:10px;
+    }
+    h3{
+      margin:0 0 16px;
+      font-size:26px;
+      line-height:1.1;
+      text-align:center;
+      letter-spacing:-.045em;
+    }
+    .checks{
+      display:grid;
+      gap:10px;
+    }
+    label.item{
+      display:flex;
+      gap:12px;
+      align-items:flex-start;
+      cursor:pointer;
+      padding:14px 14px;
+      border-radius:18px;
+      border:1px solid #EEE5DF;
+      background:#FFFEFD;
+      transition:border-color .18s ease, background .18s ease, transform .18s ease;
+    }
+    label.item:has(input:checked){
+      background:var(--accent-soft);
+      border-color:#D8B4FE;
+    }
+    input[type="checkbox"]{
+      appearance:none;
+      width:24px;height:24px;
+      margin:0;
+      flex:0 0 auto;
+      border-radius:9px;
+      border:1.5px solid #D1C4BC;
+      background:#fff;
+      position:relative;
+      top:1px;
+    }
+    input[type="checkbox"]:checked{
+      border-color:var(--accent);
+      background:var(--accent);
+      box-shadow:0 8px 16px rgba(124,58,237,.22);
+    }
+    input[type="checkbox"]:checked:after{
+      content:"";
+      position:absolute;
+      left:8px;top:4px;
+      width:5px;height:10px;
+      border:solid #fff;
+      border-width:0 2px 2px 0;
+      transform:rotate(40deg);
+    }
+    .item span{
+      color:var(--text);
+      font-size:14.4px;
+      line-height:1.45;
+    }
+    .result-wrap{
+      padding:28px 18px 0;
+    }
+    .result{
+      padding:24px 18px 18px;
+      border-radius:30px;
+      background:
+        radial-gradient(circle at 90% 0%, rgba(192,132,252,.22), transparent 26%),
+        linear-gradient(180deg,#23192D,#18111F);
+      color:#fff;
+      box-shadow:0 22px 40px rgba(17,8,22,.25);
+    }
+    .result .eyebrow{
+      color:#D8B4FE;
+      margin-bottom:8px;
+    }
+    .score{
+      display:flex;
+      justify-content:center;
+      align-items:flex-end;
+      gap:6px;
+      margin-bottom:10px;
+    }
+    .score strong{
+      font-size:60px;
+      line-height:.9;
+      letter-spacing:-.07em;
+      font-weight:900;
+    }
+    .score span{
+      font-size:18px;
+      color:#CFC4DB;
+      padding-bottom:8px;
+    }
+    .status{
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      text-align:center;
+      width:max-content;
+      margin:0 auto 13px;
+      min-height:34px;
+      padding:8px 14px;
+      border-radius:999px;
+      background:#2E2238;
+      color:#F0E5FF;
+      font-size:12px;
+      font-weight:800;
+    }
+    .result h3{
+      color:#fff;
+      text-align:center;
+      margin-bottom:10px;
+    }
+    .result p{
+      margin:0;
+      text-align:center;
+      color:#D7CFDF;
+      font-size:14.5px;
+      line-height:1.56;
+    }
+    .reset{
+      display:block;
+      margin:16px auto 0;
+      background:transparent;
+      color:#CDBEE0;
+      border:0;
+      font-size:12px;
+      text-decoration:underline;
+      padding:4px 8px;
+    }
+    .cta-wrap{
+      padding:24px 18px 24px;
+    }
+    .cta{
+      padding:24px 18px 18px;
+      border-radius:30px;
+      background:linear-gradient(180deg,#FFFFFF,#F8F4FF);
+      border:1px solid #E8DCF8;
+      box-shadow:var(--shadow);
+    }
+    .cta h2{
+      font-size:31px;
+      margin-bottom:10px;
+    }
+    .cta p{
+      margin:0;
+      font-size:15px;
+      line-height:1.58;
+      color:var(--muted);
+      text-align:center;
+    }
+    .cta p strong{color:var(--accent)}
+    .cta-buttons{
+      display:grid;
+      gap:10px;
+      margin-top:18px;
+    }
+    .cta-btn{
+      padding:0 18px;
+    }
+    .insta{
+      background:linear-gradient(135deg,#C026D3,#7C3AED);
+      color:#fff;
+    }
+    .telegram{
+      background:#fff;
+      color:var(--accent);
+      border:1px solid #DFCDF5;
+    }
+    .help{
+      margin-top:14px;
+      text-align:center;
+      color:#7A707C;
+      font-size:12.5px;
+      line-height:1.45;
+    }
+    .footer{
+      padding:0 18px 34px;
+      text-align:center;
+      color:#8A7F78;
+      font-size:12px;
+      line-height:1.55;
+    }
+    .footer b{color:var(--text)}
+    @media (min-width:481px){
+      body{padding:20px 0}
+      .app{border-radius:30px;min-height:calc(100vh - 40px)}
+    }
+  </style>
+</head>
+<body>
+  <main class="app">
+    <header class="hero">
+      <div class="navline">
+        <div class="label">mobile checklist</div>
+        <div class="free-tag">бесплатно</div>
+      </div>
+
+      <div class="hero-card">
+        <div class="eyebrow">Для beauty-мастеров и салонов</div>
+        <h1>Готов ли твой <span class="highlight">beauty-профиль</span> к рекламе?</h1>
+        <div class="hero-text">
+          20 пунктов, которые помогут быстро понять, почему клиентка может перейти из рекламы — и не записаться.
+        </div>
+
+        <div class="author">
+          <div class="avatar">AV</div>
+          <div>
+            <b>Андрей Валиницкий</b>
+            <span>Таргетолог для beauty · 4+ года · 80+ проектов · США, Дубай, Европа, Канада</span>
+          </div>
+        </div>
+
+        <a href="#start" class="primary-btn">Проверить свой профиль</a>
+      </div>
+    </header>
+
+    <section class="section" id="start">
+      <div class="intro">
+        <div class="eyebrow">Как пользоваться</div>
+        <h2>Пройди чек-лист честно</h2>
+        <p>Отмечай только то, что уже есть в профиле сейчас. Не то, что «я добавлю позже», а то, что реально увидит новая клиентка после перехода из рекламы.</p>
+        <div class="notice">Если у тебя меньше 15 галочек, реклама может приводить интерес, но терять запись уже на этапе профиля. В конце сделай скрин результата и отправь мне.</div>
+      </div>
+    </section>
+
+    <div class="progress">
+      <div class="progress-head">
+        <span>Твой прогресс</span>
+        <strong><span id="scoreTop">0</span>/20</strong>
+      </div>
+      <div class="track"><div class="bar" id="bar"></div></div>
+    </div>
+
+    <section class="group">
+      <div class="group-card">
+        <div class="group-index">Блок 01</div>
+        <h3>Первое впечатление</h3>
+        <div class="checks">
+          <label class="item"><input type="checkbox"><span>В шапке сразу понятно, какую услугу я оказываю.</span></label>
+          <label class="item"><input type="checkbox"><span>Указан город или район, где я принимаю клиентов.</span></label>
+          <label class="item"><input type="checkbox"><span>Есть понятный способ записи: кнопка, Direct или ссылка.</span></label>
+        </div>
+      </div>
+    </section>
+
+    <section class="group">
+      <div class="group-card">
+        <div class="group-index">Блок 02</div>
+        <h3>Визуал профиля</h3>
+        <div class="checks">
+          <label class="item"><input type="checkbox"><span>В первых публикациях есть реальные работы, а не только текстовые посты.</span></label>
+          <label class="item"><input type="checkbox"><span>Фото и видео достаточно качественные, чтобы рассмотреть результат.</span></label>
+          <label class="item"><input type="checkbox"><span>В профиле есть лицо мастера, кабинет или салон.</span></label>
+          <label class="item"><input type="checkbox"><span>Страница выглядит живой: видно, что записи идут сейчас.</span></label>
+        </div>
+      </div>
+    </section>
+
+    <section class="group">
+      <div class="group-card">
+        <div class="group-index">Блок 03</div>
+        <h3>Доверие</h3>
+        <div class="checks">
+          <label class="item"><input type="checkbox"><span>Отзывы легко найти в актуальных или публикациях.</span></label>
+          <label class="item"><input type="checkbox"><span>Есть «до/после» или другое понятное подтверждение результата.</span></label>
+          <label class="item"><input type="checkbox"><span>Показаны процесс, кабинет, чистота или уровень сервиса.</span></label>
+          <label class="item"><input type="checkbox"><span>Есть ответы на частые вопросы и страхи перед процедурой.</span></label>
+        </div>
+      </div>
+    </section>
+
+    <section class="group">
+      <div class="group-card">
+        <div class="group-index">Блок 04</div>
+        <h3>Запись</h3>
+        <div class="checks">
+          <label class="item"><input type="checkbox"><span>Клиентка может быстро узнать цену или получить прайс.</span></label>
+          <label class="item"><input type="checkbox"><span>Понятно, где находится кабинет или салон.</span></label>
+          <label class="item"><input type="checkbox"><span>Понятно, как узнать свободные окна и записаться.</span></label>
+          <label class="item"><input type="checkbox"><span>Условия предоплаты, отмены и переноса доступны заранее.</span></label>
+        </div>
+      </div>
+    </section>
+
+    <section class="group">
+      <div class="group-card">
+        <div class="group-index">Блок 05</div>
+        <h3>Готовность к рекламе</h3>
+        <div class="checks">
+          <label class="item"><input type="checkbox"><span>Я понимаю, какую одну услугу хочу рекламировать первой.</span></label>
+          <label class="item"><input type="checkbox"><span>У меня есть хорошие фото или видео именно этой услуги.</span></label>
+          <label class="item"><input type="checkbox"><span>Есть понятное предложение для новой клиентки.</span></label>
+          <label class="item"><input type="checkbox"><span>Я отвечаю быстро и веду диалог к записи, а не только называю цену.</span></label>
+          <label class="item"><input type="checkbox"><span>Профиль уже отвечает на вопросы: что, где, сколько и как записаться.</span></label>
+        </div>
+      </div>
+    </section>
+
+    <section class="result-wrap">
+      <div class="result">
+        <div class="eyebrow">Твой результат</div>
+        <div class="score">
+          <strong id="scoreMain">0</strong>
+          <span>/ 20</span>
+        </div>
+        <div class="status" id="status">Начни проверку</div>
+        <h3 id="resultTitle">Поставь первые галочки</h3>
+        <p id="resultText">После прохождения сделай скрин результата и отправь мне. Я подскажу, что стоит исправить перед запуском рекламы.</p>
+        <button class="reset" type="button" id="resetBtn">Сбросить результат</button>
+      </div>
+    </section>
+
+    <section class="cta-wrap">
+      <div class="cta">
+        <div class="eyebrow">Личный разбор</div>
+        <h2>Отправь мне скрин результата</h2>
+        <p>Напиши слово <strong>«РАЗБОР»</strong> и приложи скрин. Я посмотрю, где твой профиль может терять заявки ещё до запуска рекламы.</p>
+
+        <div class="cta-buttons">
+          
+          <a class="cta-btn insta" href="https://ig.me/m/valinytskyi_target" target="_blank" rel="noopener">Написать в Instagram Direct</a>
+          
+          <a class="cta-btn telegram" href="https://t.me/a_valinytskyi" target="_blank" rel="noopener">Написать в Telegram</a>
+        </div>
+
+        <div class="help">Сначала сделай скрин блока с результатом выше — так я сразу увижу, с чего лучше начать разбор.</div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <b>Андрей Валиницкий</b> · таргетолог для beauty-мастеров и салонов<br>
+      США · Дубай · Европа · Канада
+    </footer>
+  </main>
+
+  <script>
+    const boxes = Array.from(document.querySelectorAll('input[type="checkbox"]'));
+    const total = boxes.length;
+    const scoreTop = document.getElementById('scoreTop');
+    const scoreMain = document.getElementById('scoreMain');
+    const bar = document.getElementById('bar');
+    const statusNode = document.getElementById('status');
+    const titleNode = document.getElementById('resultTitle');
+    const textNode = document.getElementById('resultText');
+
+    function updateResult() {
+      const checked = boxes.filter(box => box.checked).length;
+      scoreTop.textContent = checked;
+      scoreMain.textContent = checked;
+      bar.style.width = (checked / total * 100) + '%';
+
+      boxes.forEach((box, i) => localStorage.setItem('beautyChecklistNew_' + i, box.checked));
+
+      if (checked >= 15) {
+        statusNode.textContent = 'Профиль готов к тесту рекламы';
+        statusNode.style.background = '#1F2D27';
+        statusNode.style.color = '#D7FFE4';
+        titleNode.textContent = 'Сильная база для запуска';
+        textNode.textContent = 'У тебя уже есть основа, на которую можно вести трафик. Отправь мне скрин результата — подскажу, с какой услуги и предложения лучше начать рекламу.';
+      } else if (checked >= 10) {
+        statusNode.textContent = 'Нужно немного докрутить';
+        statusNode.style.background = '#3B2B0F';
+        statusNode.style.color = '#FFE7A3';
+        titleNode.textContent = 'Почти готово';
+        textNode.textContent = 'Профиль уже неплохой, но часть обращений может теряться. Пришли скрин — скажу, какие доработки дадут самый быстрый эффект.';
+      } else if (checked > 0) {
+        statusNode.textContent = 'Сначала упаковка, потом реклама';
+        statusNode.style.background = '#3A1F24';
+        statusNode.style.color = '#FFD8DD';
+        titleNode.textContent = 'Сейчас реклама будет риском';
+        textNode.textContent = 'Люди могут заинтересоваться рекламой, но не дойти до сообщения. Отправь скрин — покажу, что лучше поменять в первую очередь.';
+      } else {
+        statusNode.textContent = 'Начни проверку';
+        statusNode.style.background = '#2E2238';
+        statusNode.style.color = '#F0E5FF';
+        titleNode.textContent = 'Поставь первые галочки';
+        textNode.textContent = 'После прохождения сделай скрин результата и отправь мне. Я подскажу, что стоит исправить перед запуском рекламы.';
+      }
+    }
+
+    boxes.forEach((box, i) => {
+      box.checked = localStorage.getItem('beautyChecklistNew_' + i) === 'true';
+      box.addEventListener('change', updateResult);
+    });
+
+    document.getElementById('resetBtn').addEventListener('click', () => {
+      boxes.forEach(box => box.checked = false);
+      updateResult();
+      document.getElementById('start').scrollIntoView({behavior:'smooth'});
+    });
+
+    updateResult();
+  </script>
+</body>
+</html>
